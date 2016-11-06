@@ -1,5 +1,49 @@
 namespace FlagUp;
 
 context DataModel{
+ 
+entity RiskType{
+ key RiskTypeID : Integer not null;
+RiskTypeText : String(60);
+};
+
+entity StudentGroup{
+ key StudentGroupID : String(60);
+StudentGroupText : String(60);
+ };
+
+entity Student{
+ key StudentID : Integer not null;
+FullName : String(60);
+};
+
+entity Module{
+ key ModuleID : String(60);
+ModuleName : String;
+Duration : Integer;
+};
+
+
+entity ModuleGraphAttrib{
+ ModuleID : String(60);
+ProgramID : String(60);
+};
+
+entity StudentModule{
+ Module : String;
+Student : Integer;
+StartDate : LocalDate;
+};
+
+entity StudentMD{
+ key StudentID : Integer;
+StudentGroupID : String(60);
+};
+entity ModuleGraph{
+};
+
+
+
+
 
 };
