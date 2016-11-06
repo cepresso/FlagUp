@@ -2,60 +2,71 @@ namespace FlagUp;
 
 context DataModel{
  
-entity RiskType{
- key RiskID : Integer not null;
-RiskText : String(60);
-};
-
-entity StudentGroup{
- key StudentGroupID : String(60);
-StudentGroupText : String(60);
-association_1 : Association[1..1] to StudentGrpRisk {StudentGroupID};
- }technical configuration {
-	group name groupName_1;
-};
-
 entity Student{
  key StudentID : Integer not null;
-FullName : String(60);
+FirstName : String(64);
+LastName : String(64);
+Street : String(64);
+Housenumber : String(16);
+City : String(64);
+ZipCode : String(16);
+HomeLocation : hana.ST_POINT;
+workingStatus : String;
 };
 
 entity Module{
- key ModuleID : String(60);
-ModuleName : String;
-Duration : Integer;
+ key Name : String(64);
+Description : String(256);
+Start : LocalDate;
+End : LocalDate;
 };
 
 
-entity ModuleGraphAttrib{
- ModuleID : String(60);
-ProgramID : String(60);
+entity Goal{
+ association_1 : Association[0..1] to Course  {name};
+priority : String;
+student : Association[0..1] to Student {StudentID};
 };
 
-entity StudentModule{
- Module : String;
-Student : Integer;
-StartDate : LocalDate;
+entity Course{
+ Name : String(128);
+Description : String(512);
+Modules : Association[0..*] to Module ;
+EnrolmentEnd : LocalDate;
+EnrolmentStart : LocalDate;
 };
 
-entity StudentMD{
- key StudentID : Integer;
-StudentGroupID : String(60);
-};
-entity ModuleGraph{
- ModuleGraph : Integer;
+entity SemesterPlan{
+ modules : Association[0..1] to Module {ModuleName};
+student : Association[0..1] to Student {StudentID};
+semester : Integer;
 };
 
-entity StudentGrpRisk{
- StudentGroupID : String;
-RiskID : String;
+entity Interest{
+ student : Association[0..1] to Student {StudentID};
+module : Association[0..1] to Module  {ModuleName};
 };
 
+entity Lesson{
+ Number : Integer;
+Date : LocalDate;
+Start : LocalTime;
+End : LocalTime;
+module : Association[0..1] to Module {Name};
+location : hana.ST_POINT;
+};
 
+entity Visit{
+ rating : Integer;
+student : Association[0..1] to Student {StudentID};
+lesson : Association[0..1] to Lesson;
+};
 
-
-
-
+entity Assignment{
+ student : Association[*, 0..1] to Student {StudentID};
+mark : Integer;
+module : Association[0..1] to Module {Name};
+};
 
 
 };
