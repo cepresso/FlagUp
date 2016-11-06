@@ -3,14 +3,17 @@ namespace FlagUp;
 context DataModel{
  
 entity RiskType{
- key RiskTypeID : Integer not null;
-RiskTypeText : String(60);
+ key RiskID : Integer not null;
+RiskText : String(60);
 };
 
 entity StudentGroup{
  key StudentGroupID : String(60);
 StudentGroupText : String(60);
- };
+association_1 : Association[1..1] to StudentGrpRisk {StudentGroupID};
+ }technical configuration {
+	group name groupName_1;
+};
 
 entity Student{
  key StudentID : Integer not null;
@@ -40,7 +43,16 @@ entity StudentMD{
 StudentGroupID : String(60);
 };
 entity ModuleGraph{
+ ModuleGraph : Integer;
 };
+
+entity StudentGrpRisk{
+ StudentGroupID : String;
+RiskID : String;
+};
+
+
+
 
 
 
