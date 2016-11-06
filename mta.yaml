@@ -13,9 +13,7 @@ modules:
  
 
 
- - name: ui5
-   type: html5
-   path: ui5
+ 
 
 resources:
  - name: hdi-container

@@ -1,0 +1,12 @@
+{
+	"name": "studentUI-approuter",
+	"engines": {
+		"node": ">=4.0.0 <7.0.0"
+	},
+	"dependencies": {
+		"approuter": "2.2.0"
+	},
+	"scripts": {
+		"start": "node node_modules/approuter/approuter.js"
+	}
+}
